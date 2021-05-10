@@ -1,7 +1,7 @@
 # Dockerfile, image, container
-FROM tensorflow:nightly
+FROM tensorflow/tensorflow
 
-ADD P_GG_Project.py .
+ADD P_GG_Project.py . model . challenge .
 
 RUN 
 

@@ -1,8 +1,8 @@
 # Dockerfile, image, container
-FROM python:3.8-slim
+FROM tensorflow/tensorflow
 
-ADD HL_GG_Proto.py . txnlog.dat .
+ADD P_GG_Project.py .
 
-RUN pip install numpy pandas
+RUN 
 
-CMD ["python", "./HL_GG_Proto.py"]
+CMD ["python", "./P_GG_Project.py"]
