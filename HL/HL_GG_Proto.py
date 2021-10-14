@@ -6,7 +6,7 @@
 
 # ##### General Imports
 
-# In[128]:
+# In[9]:
 
 
 import numpy as np
@@ -15,7 +15,7 @@ import pandas as pd
 
 # ##### Pandas Settings
 
-# In[129]:
+# In[10]:
 
 
 pd.set_option('max_rows', 500)
@@ -23,7 +23,7 @@ pd.set_option('max_rows', 500)
 
 # ##### Setting up empty DataFrame with format from file
 
-# In[143]:
+# In[11]:
 
 
 with open('txnlog.dat', 'rb') as file:
@@ -35,7 +35,7 @@ with open('txnlog.dat', 'rb') as file:
 
 # ##### Large Loop to read binary file and assign binary format based on the byte that is found
 
-# In[145]:
+# In[12]:
 
 
 # Initialization of variables
@@ -96,7 +96,7 @@ with open('txnlog.dat', 'rb') as file:
 
 # ##### Summations and count calculations
 
-# In[146]:
+# In[13]:
 
 
 # Here I have done the pandas calculations to sum for the variables needed,
@@ -106,30 +106,29 @@ with open('txnlog.dat', 'rb') as file:
 
 # Summation of credits
 total_c_df = df[df['Record_type'] == b'\x01']
+total_c = total_c_df['Amount_in_dollars'].sum()
 # display(len(total_c_df))
 # display(total_c_df)
-total_c = total_c_df['Amount_in_dollars'].sum()
 # print(total_c)
 
 # Summation of debits
 total_d_df = df[df['Record_type'] == b'\x00']
+total_d = total_d_df['Amount_in_dollars'].sum()
 # display(len(total_d_df))
 # display(total_d_df)
-total_d = total_d_df['Amount_in_dollars'].sum()
 # print(total_d)
 
 # Summation of User 245's balance
-df = df.astype({'User_ID': int})
 user_df = df[df['User_ID'] == 2456938384156277127]
+user_bal = user_df.iloc[0,3] - user_df.iloc[1,3]
 # display(len(user_df))
 # display(user_df)
-user_bal = user_df.iloc[0,3] - user_df.iloc[1,3]
 # print(user_bal)
 
 
 # ##### Complete printout
 
-# In[147]:
+# In[14]:
 
 
 print('total credit amount = {}'.format(total_c))
